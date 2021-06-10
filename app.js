@@ -21,16 +21,6 @@ const db = mysql.createConnection({
   database : process.env.DB_NAME
 })
 
-//db connection
-
-db.connect((err)=>{
-  if(err){
-    console.log(err);
-    return;
-  }
-  console.log('Connected as thread id: ' + db.threadId);
-})
-
 //create-candidate
 
 app.post('/create-candidate', (req,res) => {
