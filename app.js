@@ -14,26 +14,88 @@ app.use(express.static("resume"))
 
 //database config.
 
-const db = mysql.createPool({
+/*const db = mysql.createPool({
   connectionLimit:10,
   user : process.env.DB_USER,
   host : process.env.DB_HOST,
   password : process.env.DB_PASSWORD,
   database : process.env.DB_NAME
-})
+})*/
 
+const createTcpPool = async config => {
+  // Extract host and port from socket address
+  const dbSocketAddr = process.env.DB_HOST.split(':');
+
+  // Establish a connection to the database
+  return await mysql.createPool({
+    user: process.env.DB_USER, // e.g. 'my-db-user'
+    password: process.env.DB_PASSWORD, // e.g. 'my-db-password'
+    database: process.env.DB_NAME, // e.g. 'my-database'
+    host: dbSocketAddr[0], // e.g. '127.0.0.1'
+    // ... Specify additional properties here.
+    ...config,
+  });
+};
+
+// [START cloud_sql_mysql_mysql_create_socket]
+const createUnixSocketPool = async config => {
+  const dbSocketPath = process.env.DB_SOCKET_PATH || '/cloudsql';
+
+  // Establish a connection to the database
+  return await mysql.createPool({
+    user: process.env.DB_USER, // e.g. 'my-db-user'
+    password: process.env.DB_PASS, // e.g. 'my-db-password'
+    database: process.env.DB_NAME, // e.g. 'my-database'
+    // If connecting via unix domain socket, specify the path
+    socketPath: `${dbSocketPath}/${process.env.CLOUD_SQL_CONNECTION_NAME}`,
+    // Specify additional properties here.
+    ...config,
+  });
+};
+// [END cloud_sql_mysql_mysql_create_socket]
+
+const createPool = async () => {
+  const config = {
+    connectionLimit: 5,
+    connectTimeout: 10000,
+    waitForConnections: true, 
+    queueLimit: 0, 
+  };
+  if (process.env.DB_HOST) {
+    return await createTcpPool(config);
+  } else {
+    return await createUnixSocketPool(config);
+  }
+};
+
+let db;
+app.use(async (req, res, next) => {
+  if (db) {
+    return next();
+  }
+  try {
+    pool = await createPool();
+    next();
+  } catch (err) {
+    logger.error(err);
+    return next(err);
+  }
+});
 //create-candidate
 
-app.post('/create-candidate', (req,res) => {
+app.post('/create-candidate',async (req,res) => {
   const fname = req.body.fname;
   const lname = req.body.lname;
   const email = req.body.email;
   const password = req.body.password;
   const id = req.body.id;
 
+  db = db || await createPool();
+
   db.query('INSERT INTO candidate_record (id,fname,lname,email,password) VALUES (?,?,?,?,?)',
   [id,fname,lname,email,password],(error,result)=>{
     if(error){
+      console.log(error);
       res.status(400).send(error.sqlMessage);
       return;
     }
@@ -43,10 +105,11 @@ app.post('/create-candidate', (req,res) => {
 
 //login-candidate
 
-app.post('/login-candidate',(req,res) => {
+app.post('/login-candidate',async(req,res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  db = db || await createPool();
   db.query('SELECT * FROM candidate_record WHERE email = (?)',
   [email],(error,result) => {
     console.log(result)
@@ -62,13 +125,14 @@ app.post('/login-candidate',(req,res) => {
 
 //create-user
 
-app.post('/create-recuiter', (req,res) => {
+app.post('/create-recuiter', async(req,res) => {
   const fname = req.body.fname;
   const lname = req.body.lname;
   const email = req.body.email;
   const password = req.body.password;
   const id = req.body.id;
 
+  db = db || await createPool();
   db.query('INSERT INTO recuiter_record (id,fname,lname,email,password) VALUES (?,?,?,?,?)',
   [id,fname,lname,email,password],(error,result)=>{
     if(error){
@@ -80,10 +144,11 @@ app.post('/create-recuiter', (req,res) => {
 
 //login-recuiter
 
-app.post('/login-recuiter',(req,res) => {
+app.post('/login-recuiter',async(req,res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  db = db || await createPool();
   db.query('SELECT fname,password FROM recuiter_record WHERE email = (?)',
   [email],(error,result) => {
     if(error){
@@ -98,7 +163,7 @@ app.post('/login-recuiter',(req,res) => {
 
 //post-job
 
-app.post('/post-job',(req,res) => {
+app.post('/post-job',async(req,res) => {
   const title = req.body.title;
   const type = req.body.type;
   const postedBy = req.body.postedBy;
@@ -113,7 +178,7 @@ app.post('/post-job',(req,res) => {
   const today = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
 
   console.log(req.body)
-
+  db = db || await createPool();
   db.query('INSERT INTO jobs (id,title,description,skills,status,postedBy,company,pay,desg,type,email,createdOn) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
   [id,title,desc,skills,'OPEN',postedBy,company,pay,desg,type,key,today],(error,result) => {
     if(error){
@@ -129,9 +194,10 @@ app.post('/post-job',(req,res) => {
 
 //get-jobs by email
 
-app.get('/fetch-jobs/:email',(req,res)=>{
+app.get('/fetch-jobs/:email',async(req,res)=>{
   const email = req.params.email;
   console.log(req.params)
+  db = db || await createPool();
   db.query('SELECT * FROM jobs WHERE email = (?)',
   [email],(error,result) => {
     if(error){
@@ -147,8 +213,8 @@ app.get('/fetch-jobs/:email',(req,res)=>{
 
 // get-active jobs
 
-app.get('/fetch-activejobs', (req,res)=>{
-  
+app.get('/fetch-activejobs', async(req,res)=>{
+  db = db || await createPool();
   db.query('SELECT * FROM jobs WHERE status = "OPEN"', (error,result) => {
     if(error){
       res.status(400).send(error.sqlMessage);
@@ -163,7 +229,7 @@ app.get('/fetch-activejobs', (req,res)=>{
 
 //apply for job
 
-app.post("/apply-for-job",(req,res)=>{
+app.post("/apply-for-job",async(req,res)=>{
   const resume = req.body.resume;
   const hire = req.body.hire;
   const mode = req.body.mode;
@@ -171,7 +237,7 @@ app.post("/apply-for-job",(req,res)=>{
   const c_id = req.body.candidateId;
   const j_id = req.body.jobId;
   const name = req.body.name;
-
+  db = db || await createPool();
   db.query('INSERT INTO applied_jobs (candidate_id,job_id,name,resume,mode,hire,about) VALUES (?,?,?,?,?,?,?)',
     [c_id,j_id,name,resume,mode,hire,about],(error,result)=>{
       if(error){
@@ -212,8 +278,9 @@ app.post('/upload-resume', (req,res)=>{
 
 //fetch-resume-by-joibId
 
-app.get('/fetch-resume-job/:job_id',(req,res)=>{
+app.get('/fetch-resume-job/:job_id',async(req,res)=>{
   const job_id = req.params.job_id;
+  db = db || await createPool();
   db.query('SELECT candidate_id,resume,name FROM applied_jobs WHERE job_id IN (?)',
   [job_id],(error,result)=>{
     if(error){
@@ -227,9 +294,9 @@ app.get('/fetch-resume-job/:job_id',(req,res)=>{
 
 //fetch candidate details by id 
 
-app.get('/fetch-candidate/:id',(req,res)=>{
+app.get('/fetch-candidate/:id',async(req,res)=>{
   const id = req.params.id;
-
+  db = db || await createPool();
   db.query('SELECT * FROM candidate_record WHERE id = (?)',[id],
   (error,result)=>{
     if(error){
@@ -261,6 +328,6 @@ app.get('/download-resume/:file',(req,res)=>{
 })
 
 
-app.listen(process.env.PORT || 8080, ()=>{
+app.listen(process.env.PORT || 8000, ()=>{
   console.log("Server up and running")
 })
