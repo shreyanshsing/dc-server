@@ -99,7 +99,7 @@ app.post('/create-candidate',async (req,res) => {
       console.log(error);
       return res.status(400).send(error.sqlMessage);
     }
-    return resstatus(200).send("Entry created successfully");
+    return res.status(200).send("Entry created successfully");
   }) 
 })
 
@@ -112,8 +112,8 @@ app.post('/login-candidate',async(req,res) => {
   db = db || await createPool();
   db.query('SELECT * FROM candidate_record WHERE email = (?)',
   [email],(error,result) => {
-    console.log(result)
     if(error){
+      console.log(error)
       return res.status(400).send(error.sqlMessage);
     }
     else{
@@ -136,6 +136,7 @@ app.post('/create-recuiter', async(req,res) => {
   db.query('INSERT INTO recuiter_record (id,fname,lname,email,password) VALUES (?,?,?,?,?)',
   [id,fname,lname,email,password],(error,result)=>{
     if(error){
+      console.log(error)
       return res.status(400).send(error.sqlMessage);
     }
     return res.status(200).send("Entry created successfully");
@@ -152,6 +153,7 @@ app.post('/login-recuiter',async(req,res) => {
   db.query('SELECT fname,password FROM recuiter_record WHERE email = (?)',
   [email],(error,result) => {
     if(error){
+      console.log(error)
       return res.status(400).send(error.sqlMessage);
     }
     else{
@@ -201,6 +203,7 @@ app.get('/fetch-jobs/:email',async(req,res)=>{
   db.query('SELECT * FROM jobs WHERE email = (?)',
   [email],(error,result) => {
     if(error){
+      console.log(error)
       res.status(400).send(error.sqlMessage);
       return;
     }
@@ -217,6 +220,7 @@ app.get('/fetch-activejobs', async(req,res)=>{
   db = db || await createPool();
   db.query('SELECT * FROM jobs WHERE status = "OPEN"', (error,result) => {
     if(error){
+      console.log(error)
       res.status(400).send(error.sqlMessage);
       return;
     }
@@ -241,6 +245,7 @@ app.post("/apply-for-job",async(req,res)=>{
   db.query('INSERT INTO applied_jobs (candidate_id,job_id,name,resume,mode,hire,about) VALUES (?,?,?,?,?,?,?)',
     [c_id,j_id,name,resume,mode,hire,about],(error,result)=>{
       if(error){
+        console.log(error)
         res.status(400).send(error.sqlMessage);
         return;
       }
@@ -248,6 +253,7 @@ app.post("/apply-for-job",async(req,res)=>{
         db.query('UPDATE jobs SET applicants = applicants + 1 WHERE id = (?)',[j_id],
         (err,res)=>{
           if(err){
+            console.log(err)
             console.log("can't fetch applicants");
             return;
           }
@@ -300,6 +306,7 @@ app.get('/fetch-candidate/:id',async(req,res)=>{
   db.query('SELECT * FROM candidate_record WHERE id = (?)',[id],
   (error,result)=>{
     if(error){
+      console.log(error)
       res.status(400).send(error.sqlMessage);
       return;
     }
@@ -320,6 +327,7 @@ app.get('/download-resume/:file',(req,res)=>{
 
   fs.readFile(fileLocation,(err,data)=>{
     if(err){
+      console.log(err)
       return res.status(400).send("Unable to get pdf.");
     }
     console.log(data);
