@@ -96,10 +96,9 @@ app.post('/create-candidate',async (req,res) => {
   [id,fname,lname,email,password],(error,result)=>{
     if(error){
       console.log(error);
-      res.status(400).send(error.sqlMessage);
-      return;
+      return res.status(400).send(error.sqlMessage);
     }
-    res.send("Entry created successfully");
+    return resstatus(200).send("Entry created successfully");
   }) 
 })
 
@@ -118,7 +117,7 @@ app.post('/login-candidate',async(req,res) => {
     }
     else{
       return result.length === 0 ? res.status(400).send("Email is not registered") :
-      result[0].password === password ? res.send(result[0]) : res.status(400).send("Password did not matched");
+      result[0].password === password ? res.status(200).send(result[0]) : res.status(400).send("Password did not matched");
     }
   })
 })
@@ -138,7 +137,7 @@ app.post('/create-recuiter', async(req,res) => {
     if(error){
       return res.status(400).send(error.sqlMessage);
     }
-    return res.send("Entry created successfully");
+    return res.status(200).send("Entry created successfully");
   }) 
 })
 
@@ -156,7 +155,7 @@ app.post('/login-recuiter',async(req,res) => {
     }
     else{
       return result.length === 0 ? res.status(400).send("Email is not registered") :
-      result[0].password === password ? res.send(result[0]) : res.status(400).send("Password did not matched");
+      result[0].password === password ? res.status(200).send(result[0]) : res.status(400).send("Password did not matched");
     }
   })
 })
@@ -187,7 +186,7 @@ app.post('/post-job',async(req,res) => {
       return;
     }
     else{
-      res.send('job created');
+      res.status(200).send('job created');
     }
   })
 })
@@ -205,7 +204,7 @@ app.get('/fetch-jobs/:email',async(req,res)=>{
       return;
     }
     else{
-      res.send(result);
+      res.status(200).send(result);
       return;
     }
   })
@@ -221,7 +220,7 @@ app.get('/fetch-activejobs', async(req,res)=>{
       return;
     }
     else{
-      res.send(result);
+      res.status(200).send(result);
       return
     }
   })
@@ -253,7 +252,7 @@ app.post("/apply-for-job",async(req,res)=>{
           }
           console.log(res)
         })
-        res.send("entry created.")
+        res.status(200).send("entry created.")
       }
     })
 })
@@ -288,7 +287,7 @@ app.get('/fetch-resume-job/:job_id',async(req,res)=>{
       res.status(400).send(error.sqlMessage);
       return;
     }
-    res.send(result);
+    res.status(200).send(result);
     })
 })
 
@@ -303,7 +302,7 @@ app.get('/fetch-candidate/:id',async(req,res)=>{
       res.status(400).send(error.sqlMessage);
       return;
     }
-    res.send(result);
+    res.status(200).send(result);
   })
 })
 
@@ -323,7 +322,7 @@ app.get('/download-resume/:file',(req,res)=>{
       return res.status(400).send("Unable to get pdf.");
     }
     console.log(data);
-    res.send(data);
+    res.status(200).send(data);
   })
 })
 
