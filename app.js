@@ -58,6 +58,7 @@ const createPool = async () => {
   const config = {
     connectionLimit: 5,
     connectTimeout: 10000,
+    acquireTimeout: 20000,
     waitForConnections: true, 
     queueLimit: 0, 
   };

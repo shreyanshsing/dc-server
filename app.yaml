@@ -1,6 +1,7 @@
 runtime: nodejs10
 
 env_variables:
+  CLOUD_SQL_CONNECTION_NAME : "dream-company-316219:us-central1:dream-company-db"
   DB_NAME : "dream"
   DB_HOST : "34.70.3.157"
   DB_USER : "root"
