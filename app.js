@@ -14,7 +14,8 @@ app.use(express.static("resume"))
 
 //database config.
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
+  connectionLimit:10,
   user : process.env.DB_USER,
   host : process.env.DB_HOST,
   password : process.env.DB_PASSWORD,
