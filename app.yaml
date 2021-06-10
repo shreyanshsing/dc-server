@@ -1,0 +1,9 @@
+runtime: nodejs10
+
+env_variables:
+  HOST_URL = "https://git.heroku.com/afternoon-fortress-39516.git"
+
+  DB_NAME = "dream"
+  DB_HOST = "34.70.3.157"
+  DB_USER = "root"
+  DB_PASSWORD = "password"
