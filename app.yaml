@@ -1,6 +1,6 @@
 runtime: nodejs10
 
-env_variables:d
+env_variables:
   DB_NAME : "dream"
   DB_HOST : "34.70.3.157"
   DB_USER : "root"
