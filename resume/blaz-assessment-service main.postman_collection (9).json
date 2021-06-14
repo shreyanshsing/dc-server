@@ -1,0 +1,1811 @@
+{
+	"info": {
+		"_postman_id": "0edac15f-df19-47cd-b0b0-62bb670647dd",
+		"name": "blaz-assessment-service main",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "questions-controller",
+			"item": [
+				{
+					"name": "Add-Question-Paper",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"classDetail\": {\r\n    \"grade\": \"5\"\r\n  },\r\n  \"duration\": \"1 hr\",\r\n  \"instructions\": \"Write in your language :-\",\r\n  \"numberOfQuestions\": \"30\",\r\n  \"questionPaperId\": \"BE-SEM1\",\r\n  \"questions\": {},\r\n  \"subject\": {\r\n    \"subjectId\": \"10ME071\",\r\n    \"subjectName\": \"ManagementStudies\"\r\n  },\r\n  \"totalMarks\": \"100\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/question-service/questionpaper",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"question-service",
+								"questionpaper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add-Question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"duration\": \"1 min\",\r\n  \"marks\": \"3\",\r\n  \"options\": [\r\n    {\r\n      \"answer\": \" (2(2/4)*7) \",\r\n       \"attemptedOption\": \"00\",\r\n       \"audioclip\": \"string\",\r\n      \"correctAnswer\": \"CORRECT\",\r\n      \"id\": \"11\",\r\n      \"image\": \"jpg\",\r\n      \"imageId\": \"string\",\r\n      \"priority\": \"2\",\r\n      \"type\": \"mcq\"\r\n    }\r\n  ],\r\n  \"quesDescription\": \"What do u mean by entrepreneur\",\r\n  \"questionId\": \"02\",\r\n  \"questionResult\": {\r\n    \"correctAnswer\": \"CORRECT\",\r\n    \"obtainedMarks\": 2,\r\n    \"questionAttempted\": true\r\n  },\r\n  \"questionsType\": \"MCQ\",\r\n  \"subject\": {\r\n    \"subjectId\": \"10ME071\",\r\n    \"subjectName\": \"ManagementStudies\"\r\n  }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/question-service/question/BE-SEM1",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"question-service",
+								"question",
+								"BE-SEM1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get-QuestionPaper-By-questionPaperID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "BE-SEM1",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/question-service/questionPaperDetail/BE-SEM1/en",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"question-service",
+								"questionPaperDetail",
+								"BE-SEM1",
+								"en"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update-Result",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"correctAns\": \"true\",\r\n  \"isQuestionAttempted\": \"true\",\r\n  \"obtainedMarks\": \"03\",\r\n  \"questionId\": \"013\",\r\n  \"questionPaperId\": \"BE-SEM1\",\r\n  \"selectedOption\": \"4\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/question-service/updateResult/rohan",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"question-service",
+								"updateResult",
+								"rohan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "login-controller",
+			"item": [
+				{
+					"name": "Validate-User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": \"string\",\r\n  \"password\": \"r123\",\r\n  \"questionPaperSets\": [\r\n    {\r\n      \"endDate\": \"2020-12-07T14:23:42.810Z\",\r\n      \"examStatus\": {\r\n        \"endTime\": \"2020-12-07T14:23:42.810Z\",\r\n        \"ipAddress\": \"string\",\r\n        \"message\": \"string\",\r\n        \"startTime\": \"2020-12-07T14:23:42.810Z\"\r\n      },\r\n      \"expireDate\": \"2020-12-07T14:23:42.810Z\",\r\n      \"ipAddress\": \"string\",\r\n      \"paperEvaluationResult\": {\r\n        \"attemptedQuestions\": 0,\r\n        \"message\": \"string\",\r\n        \"notAttemptedQuestions\": 0,\r\n        \"numberOfQuestions\": 0,\r\n        \"obtainedMarks\": 0,\r\n        \"percentage\": 0,\r\n        \"timeTaken\": \"2020-12-07T14:23:42.810Z\",\r\n        \"totalMarks\": 0\r\n      },\r\n      \"questionAnsList\": [\r\n        {\r\n          \"correctAns\": true,\r\n          \"obtainedMarks\": 0,\r\n          \"questionAttempted\": true,\r\n          \"questionId\": \"string\",\r\n          \"selectedOption\": \"string\"\r\n        }\r\n      ],\r\n      \"questionPaperId\": \"string\",\r\n      \"startDate\": \"2020-12-07T14:23:42.810Z\",\r\n      \"startTime\": \"2020-12-07T14:23:42.810Z\",\r\n      \"status\": \"ACTIVE\",\r\n      \"validity\": 0,\r\n      \"validityFormat\": \"string\"\r\n    }\r\n  ],\r\n  \"role\": [\r\n    {\r\n      \"roleName\": \"string\",\r\n      \"roleType\": \"string\"\r\n    }\r\n  ],\r\n  \"schoolDetailId\": \"string\",\r\n  \"userClassDetailId\": \"string\",\r\n  \"userDetail\": {\r\n    \"dateOfBirth\": \"string\",\r\n    \"email\": \"string\",\r\n    \"emergencyContact\": \"string\",\r\n    \"fatherFirstName\": \"string\",\r\n    \"fatherLastName\": \"string\",\r\n    \"fatherMiddleName\": \"string\",\r\n    \"firstName\": \"string\",\r\n    \"gender\": \"string\",\r\n    \"isMobileVerified\": \"string\",\r\n    \"lastName\": \"string\",\r\n    \"marriedType\": \"string\",\r\n    \"middleName\": \"string\",\r\n    \"mobile\": \"string\",\r\n    \"motherFirstName\": \"string\",\r\n    \"motherLast\": \"string\",\r\n    \"numberOfKids\": \"string\",\r\n    \"suffix\": \"string\"\r\n  },\r\n  \"regNumber\": \"rohan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/login-service/validate",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"login-service",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register-User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"r123\",\r\n  \"role\": [\r\n    {\r\n      \"roleName\": \"student\",\r\n      \"roleType\": \"student\"\r\n    }\r\n  ],\r\n  \"schoolDetailId\": \"s1\",\r\n  \"userClassDetailId\": \"u1\",\r\n  \"userDetail\": {\r\n    \"dateOfBirth\": \"05 jan 1996\",\r\n    \"email\": \"rohan@gmail.com\",\r\n    \"emergencyContact\": \"9570236589\",\r\n    \"fatherFirstName\": \"mohan\",\r\n    \"fatherLastName\": \"singh\",\r\n    \"fatherMiddleName\": \"kumar\",\r\n    \"firstName\": \"rohan\",\r\n    \"gender\": \"male\",\r\n    \"isMobileVerified\": \"yes\",\r\n    \"lastName\": \"singh\",\r\n    \"marriedType\": \"married\",\r\n    \"middleName\": \"kumar\",\r\n    \"mobile\": \"9587456328\",\r\n    \"motherFirstName\": \"renu\",\r\n    \"motherLast\": \"singh\",\r\n    \"numberOfKids\": \"3\",\r\n    \"suffix\": \"Mr.\"\r\n  },\r\n  \"regNumber\": \"rohan\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/login-service/create",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"login-service",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "assessment-controller",
+			"item": [
+				{
+					"name": "AssignPaper",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"ipAddress\": \"11222\",\r\n  \"questionPaperId\": \"BE-SEM2\",\r\n  \"startDate\": \"20-12-21\",\r\n  \"regNumber\": \"rohan\",\r\n  \"validity\": \"3\",\r\n  \"validityFormat\": \"DAYS\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/assessment-service/assignPaper",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"assessment-service",
+								"assignPaper"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Schedule-QuestionPaper-Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/assessment-service/dashboard/rohan",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"assessment-service",
+								"dashboard",
+								"rohan"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "translator-controller",
+			"item": [
+				{
+					"name": "translate-question",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"\",\r\n  \"languagetype\": \"mr\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/translator-service/translate/02/BE-SEM1",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"translator-service",
+								"translate",
+								"02",
+								"BE-SEM1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "translate-content",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"hello\",\r\n  \"languagetype\": \"hi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/translator-service/translate",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"translator-service",
+								"translate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "texttospeech-controller",
+			"item": [
+				{
+					"name": "texttospeech",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"\",\r\n  \"languagetype\": \"\",\r\n  \"questionId\": \"013\",\r\n  \"questionPaperId\": \"BE-SEM1\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/texttospeech-service/texttospeech",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"texttospeech-service",
+								"texttospeech"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "texttospeech-content",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"content\": \"hello\",\r\n  \"languageType\": \"hi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/texttospeech-service/texttospeechcontent",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"texttospeech-service",
+								"texttospeechcontent"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "questionimage-controller",
+			"item": [
+				{
+					"name": "questionimage-upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/Cheenu/Pictures/Screenshots/Screenshot (29).png"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/questionimage-service/image/question/BE-SEM1/02",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"questionimage-service",
+								"image",
+								"question",
+								"BE-SEM1",
+								"02"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "registration-service",
+			"item": [
+				{
+					"name": "Registration-Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"studentDTO\":{\r\n   \"dateOfCompletion\":\"5-5-2018\",\r\n   \"dateOfJoining\":\"10-10-2017\",\r\n   \"guardian\":[\r\n      {\r\n         \"aadhaarNumber\":\"652451545\",\r\n         \"addresses\":[\r\n            {\r\n               \"addressLine1\":\"1, 4th cross\",\r\n               \"addressLine2\":\"linden street\",\r\n               \"addressType\":\"victoria\",\r\n               \"city\":\"bangalore\",\r\n               \"country\":\"INdia\",\r\n               \"state\":\"Karnataka\",\r\n               \"zipCode\":\"560008\"\r\n            }\r\n         ],\r\n         \"firstName\":\"laksh\",\r\n         \"gender\":\"MALE\",\r\n         \"lastName\":\"raj\",\r\n         \"middleName\":\"S\",\r\n         \"pastEducationalDetails\":[\r\n            {\r\n               \"board\":\"CBSE\",\r\n               \"endYear\":\"5-5-2011\",\r\n               \"gradeLevel\":\"12\",\r\n               \"nameOfCollege\":\"St.vitroro\",\r\n               \"percentage\":\"56%\",\r\n               \"semBack\":\"Nil\",\r\n               \"startYear\":\"3-3-2009\"\r\n            }\r\n         ]\r\n      }\r\n   ],\r\n   \"password\":\"ddvdv\",\r\n    \"paymentMethod\": \"QUARTERLY\",\r\n   \"regNumber\":\"pav14\",\r\n   \"userDetail\":{\r\n      \"aadhaarNumber\":\"652351214\",\r\n      \"addresses\":[\r\n         {\r\n            \"addressLine1\":\"6, 1st blcok\",\r\n            \"addressLine2\":\"xrf3rf\",\r\n            \"addressType\":\"tg4tg4t\",\r\n            \"city\":\"Bangalore\",\r\n            \"country\":\"India\",\r\n            \"state\":\"Karnataka\",\r\n            \"zipCode\":\"50048\"\r\n         }\r\n      ],\r\n      \"currentEducationDetail\":{\r\n         \"className\":\"first\",\r\n         \"sectionName\":\"A\"\r\n      },\r\n      \"dateOfBirth\":\"12-8-1997\",\r\n      \"emailId\":\"t@email.com\",\r\n      \"emergencyContact\":\"3353654225\",\r\n      \"fatherFirstName\":\"Rohit\",\r\n      \"fatherLastName\":\"Singh\",\r\n      \"fatherMiddleName\":\"s\",\r\n      \"firstName\":\"rohan\",\r\n      \"gender\":\"MALE\",\r\n      \"isMobileVerified\":\"yes\",\r\n      \"lastName\":\"Singh\",\r\n      \"marriedType\":\"SINGLE\",\r\n      \"middleName\":\"R\",\r\n      \"mobile\":\"66656565563\",\r\n      \"motherFirstName\":\"Shanti\",\r\n      \"motherLast\":\"sg\",\r\n      \"numberOfKids\":\"2\",\r\n      \"pastEducationalDetails\":[\r\n         {\r\n            \"board\":\"icse\",\r\n            \"endYear\":\"3-3-2011\",\r\n            \"gradeLevel\":\"LKG\",\r\n            \"nameOfCollege\":\"dfadad\",\r\n            \"percentage\":\"50\",\r\n            \"semBack\":\"asc\",\r\n            \"startYear\":\"1-1-2015\"\r\n         }\r\n      ],\r\n      \"preferredLanguages\":[\r\n         \"English\"\r\n      ],\r\n      \"regionalLanguage\":\"Hindi\",\r\n      \"suffix\":\"as\",\r\n      \"whatsappNumber\":\"5595955887\"\r\n   },\r\n   \"userStatus\":\"ACTIVE\"\r\n},\r\n\"userType\":\"STUDENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/register",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration-Teacher",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"employeeDTO\": {\r\n    \"addresses\": [\r\n      {\r\n        \"addressLine1\": \"#3, 1st main\",\r\n        \"addressLine2\": \"3rd block\",\r\n        \"addressType\": \"RajajiNagar\",\r\n        \"city\": \"Bangalore\",\r\n        \"country\": \"India\",\r\n        \"state\": \"Karnataka\",\r\n        \"zipCode\": \"560004\"\r\n      }\r\n    ],\r\n    \"affiliates\": \"123456\",\r\n    \"auditInfo\": {\r\n      \"createOn\": \"2-2-2015\",\r\n      \"createdBy\": \"pav\"\r\n    },\r\n    \"dateOfCompletion\": \"1-1-2018\",\r\n    \"dateOfJoining\": \"1-1-2015\",\r\n    \"id\": \"Tea12\",\r\n    \"identity\": \"Scar on hand\",\r\n     \"msisdn\": \"88784565\",\r\n    \"password\": \"r12345\",\r\n    \"regNumber\": \"5TEA25\",\r\n    \"salaryPackage\": \"5 lakhs\",\r\n    \"specializationSubjects\": \"Science and Maths\",\r\n    \"userDetail\": {\r\n        \"aadhaarNumber\": \"555551222\",\r\n      \"addresses\": [\r\n        {\r\n          \"addressLine1\": \"#3, 1st main\",\r\n          \"addressLine2\": \"3rd block\",\r\n          \"addressType\": \"RajajiNagar\",\r\n          \"city\": \"Bangalore\",\r\n          \"country\": \"India\",\r\n          \"state\": \"Karnataka\",\r\n          \"zipCode\": \"560004\"\r\n        }\r\n      ],\r\n   \"dateOfBirth\": \"14-10-1980\",\r\n       \"emailId\": \"teacher@email.com\",\r\n      \"emergencyContact\": \"562654121\",\r\n      \"fatherFirstName\": \"Ram\",\r\n      \"fatherLastName\": \"Kapoor\",\r\n      \"fatherMiddleName\": \"A\",\r\n      \"firstName\": \"Prithvi\",\r\n      \"gender\": \"MALE\",\r\n      \"isMobileVerified\": \"yes\",\r\n      \"lastName\": \"Kapoor\",\r\n      \"marriedType\": \"Single\",\r\n      \"middleName\": \"R\",\r\n      \"mobile\": \"9856547\",\r\n      \"motherFirstName\": \"Latha\",\r\n      \"motherLast\": \"kumari\",\r\n      \"numberOfKids\": \"0\",\r\n      \"pastEducationalDetails\": [\r\n        {\r\n          \"board\": \"Delhi University\",\r\n        \"endYear\": \"9-9-1999\",\r\n        \"gradeLevel\": \"PG\",\r\n        \"nameOfCollege\": \"Delhi College\",\r\n        \"percentage\": \"56%\",\r\n        \"semBack\": \"Nil\",\r\n        \"startYear\": \"1-1-1995\"\r\n        }\r\n      ],\r\n     \"preferredLanguages\": [\r\n        \"English\",\"spanish\"\r\n      ],\r\n      \"regionalLanguage\": \"malayalam\",\r\n      \"suffix\": \"xxxx\",\r\n      \"whatsappNumber\": \"552586955\"\r\n    },\r\n    \"userStatus\": \"ACTIVE\",\r\n    \"userType\": \"TEACHER\"\r\n  },\r\n\"userType\":\"TEACHER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/register",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update-Student",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"dateOfCompletion\":\"5-6-2018\",\r\n   \"dateOfJoining\":\"10-10-2017\",\r\n   \"guardian\":[\r\n      {\r\n         \"aadhaarNumber\":\"652451545\",\r\n         \"addresses\":[\r\n            {\r\n               \"addressLine1\":\"1, 4th cross\",\r\n               \"addressLine2\":\"linden street\",\r\n               \"addressType\":\"victoria\",\r\n               \"city\":\"bangalore\",\r\n               \"country\":\"INdia\",\r\n               \"state\":\"Karnataka\",\r\n               \"zipCode\":\"560008\"\r\n            }\r\n         ],\r\n         \"firstName\":\"laksh\",\r\n         \"gender\":\"MALE\",\r\n         \"lastName\":\"raj\",\r\n         \"middleName\":\"S\",\r\n         \"pastEducationalDetails\":[\r\n            {\r\n               \"board\":\"CBSE\",\r\n               \"endYear\":\"5-5-2011\",\r\n               \"gradeLevel\":\"12\",\r\n               \"nameOfCollege\":\"St.vitroro\",\r\n               \"percentage\":\"56%\",\r\n               \"semBack\":\"Nil\",\r\n               \"startYear\":\"3-3-2009\"\r\n            }\r\n         ]\r\n      }\r\n   ],\r\n   \"password\":\"r123\",\r\n    \"paymentMethod\": \"QUARTERLY\",\r\n   \"regNumber\":\"pav14\",\r\n   \"userDetail\":{\r\n      \"aadhaarNumber\":\"652351214\",\r\n      \"addresses\":[\r\n         {\r\n            \"addressLine1\":\"6, 1st blcok\",\r\n            \"addressLine2\":\"xrf3rf\",\r\n            \"addressType\":\"tg4tg4t\",\r\n            \"city\":\"Bangalore\",\r\n            \"country\":\"India\",\r\n            \"state\":\"Karnataka\",\r\n            \"zipCode\":\"50048\"\r\n         }\r\n      ],\r\n      \"currentEducationDetail\":{\r\n         \"className\":\"FIRST\",\r\n         \"sectionName\":\"A\"\r\n      },\r\n      \"dateOfBirth\":\"12-8-1997\",\r\n      \"emailId\":\"student@email.com\",\r\n      \"emergencyContact\":\"3353654225\",\r\n      \"fatherFirstName\":\"Rohit\",\r\n      \"fatherLastName\":\"Singh\",\r\n      \"fatherMiddleName\":\"s\",\r\n      \"firstName\":\"rohan\",\r\n      \"gender\":\"MALE\",\r\n      \"isMobileVerified\":\"yes\",\r\n      \"lastName\":\"Kapoor\",\r\n      \"marriedType\":\"SINGLE\",\r\n      \"middleName\":\"R\",\r\n      \"mobile\":\"66656565563\",\r\n      \"motherFirstName\":\"Shanti\",\r\n      \"motherLast\":\"sg\",\r\n      \"numberOfKids\":\"2\",\r\n      \"pastEducationalDetails\":[\r\n         {\r\n            \"board\":\"icse\",\r\n            \"endYear\":\"3-3-2011\",\r\n            \"gradeLevel\":\"LKG\",\r\n            \"nameOfCollege\":\"dfadad\",\r\n            \"percentage\":\"50\",\r\n            \"semBack\":\"asc\",\r\n            \"startYear\":\"1-1-2015\"\r\n         }\r\n      ],\r\n      \"preferredLanguages\":[\r\n         \"English\"\r\n      ],\r\n      \"regionalLanguage\":\"Hindi\",\r\n      \"suffix\":\"as\",\r\n      \"whatsappNumber\":\"5595955887\"\r\n   },\r\n   \"userStatus\":\"ACTIVE\"\r\n},\r\n\"userType\":\"STUDENT\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/update/student",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"update",
+								"student"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update-Teacher",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"addresses\": [\r\n      {\r\n        \"addressLine1\": \"#3, 1st main\",\r\n        \"addressLine2\": \"3rd block\",\r\n        \"addressType\": \"RajajiNagar\",\r\n        \"city\": \"Bangalore\",\r\n        \"country\": \"India\",\r\n        \"state\": \"Karnataka\",\r\n        \"zipCode\": \"560004\"\r\n      }\r\n    ],\r\n    \"affiliates\": \"656565\",\r\n    \"auditInfo\": {\r\n      \"createOn\": \"2-2-2015\",\r\n      \"createdBy\": \"pav\"\r\n    },\r\n    \"dateOfCompletion\": \"1-1-2018\",\r\n    \"dateOfJoining\": \"1-1-2015\",\r\n    \"id\": \"Tea12\",\r\n    \"identity\": \"Scar on hand\",\r\n     \"msisdn\": \"88784565\",\r\n    \"password\": \"r12345\",\r\n    \"regNumber\": \"5TEA25\",\r\n    \"salaryPackage\": \"5 lakhs\",\r\n    \"specializationSubjects\": \"Science and Maths\",\r\n    \"userDetail\": {\r\n        \"aadhaarNumber\": \"555551222\",\r\n      \"addresses\": [\r\n        {\r\n          \"addressLine1\": \"#3, 1st main\",\r\n          \"addressLine2\": \"3rd block\",\r\n          \"addressType\": \"RajajiNagar\",\r\n          \"city\": \"Bangalore\",\r\n          \"country\": \"India\",\r\n          \"state\": \"Karnataka\",\r\n          \"zipCode\": \"560004\"\r\n        }\r\n      ],\r\n   \"dateOfBirth\": \"14-10-1980\",\r\n       \"emailId\": \"teacher@email.com\",\r\n      \"emergencyContact\": \"562654121\",\r\n      \"fatherFirstName\": \"Ram\",\r\n      \"fatherLastName\": \"Kapoor\",\r\n      \"fatherMiddleName\": \"A\",\r\n      \"firstName\": \"Kiran\",\r\n      \"gender\": \"MALE\",\r\n      \"isMobileVerified\": \"yes\",\r\n      \"lastName\": \"Kapoor\",\r\n      \"marriedType\": \"Single\",\r\n      \"middleName\": \"R\",\r\n      \"mobile\": \"9856547\",\r\n      \"motherFirstName\": \"Latha\",\r\n      \"motherLast\": \"kumari\",\r\n      \"numberOfKids\": \"0\",\r\n      \"pastEducationalDetails\": [\r\n        {\r\n          \"board\": \"Delhi University\",\r\n        \"endYear\": \"9-9-1999\",\r\n        \"gradeLevel\": \"PG\",\r\n        \"nameOfCollege\": \"Delhi College\",\r\n        \"percentage\": \"56%\",\r\n        \"semBack\": \"Nil\",\r\n        \"startYear\": \"1-1-1995\"\r\n        }\r\n      ],\r\n     \"preferredLanguages\": [\r\n        \"English\",\"spanish\"\r\n      ],\r\n      \"regionalLanguage\": \"malayalam\",\r\n      \"suffix\": \"xxxx\",\r\n      \"whatsappNumber\": \"552586955\"\r\n    },\r\n    \"userStatus\": \"ACTIVE\",\r\n    \"userType\": \"TEACHER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/update/teacher",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"update",
+								"teacher"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-teacher-password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"newPassword\": \"6565\",\r\n  \"password\": \"r12345\",\r\n  \"userType\": \"TEACHER\",\r\n  \"username\": \"5TEA25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/update/password",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"update",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-student-password",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"newPassword\": \"pav14\",\r\n  \"password\": \"r123\",\r\n  \"userType\": \"STUDENT\",\r\n  \"username\": \"abc12\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/update/password",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"update",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-userstatus",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/update-userStatus/student%40email.com/ACTIVE",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"update-userStatus",
+								"student%40email.com",
+								"ACTIVE"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total-number-students",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/totalCount/STUDENT",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"totalCount",
+								"STUDENT"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total-number-teachers",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/totalCount/TEACHER",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"totalCount",
+								"TEACHER"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registration-admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"employeeDTO\": {\r\n    \"addresses\": [\r\n      {\r\n        \"addressLine1\": \"#3, 1st main\",\r\n        \"addressLine2\": \"3rd block\",\r\n        \"addressType\": \"RajajiNagar\",\r\n        \"city\": \"Bangalore\",\r\n        \"country\": \"India\",\r\n        \"state\": \"Karnataka\",\r\n        \"zipCode\": \"560004\"\r\n      }\r\n    ],\r\n    \"affiliates\": \"123456\",\r\n    \"auditInfo\": {\r\n      \"createOn\": \"2-2-2015\",\r\n      \"createdBy\": \"pav\"\r\n    },\r\n    \"dateOfCompletion\": \"1-1-2018\",\r\n    \"dateOfJoining\": \"1-1-2015\",\r\n    \"id\": \"ad123\",\r\n    \"identity\": \"Scar on hand\",\r\n     \"msisdn\": \"88784565\",\r\n    \"password\": \"okh\",\r\n   \"regNumber\": \"544hb\",\r\n    \"salaryPackage\": \"5 lakhs\",\r\n    \"specializationSubjects\": \"Science and Maths\",\r\n    \"userDetail\": {\r\n        \"aadhaarNumber\": \"555551222\",\r\n      \"addresses\": [\r\n        {\r\n          \"addressLine1\": \"#3, 1st main\",\r\n          \"addressLine2\": \"3rd block\",\r\n          \"addressType\": \"RajajiNagar\",\r\n          \"city\": \"Bangalore\",\r\n          \"country\": \"India\",\r\n          \"state\": \"Karnataka\",\r\n          \"zipCode\": \"560004\"\r\n        }\r\n      ],\r\n   \"dateOfBirth\": \"14-10-1980\",\r\n       \"emailId\": \"admin@email.com\",\r\n      \"emergencyContact\": \"562654121\",\r\n      \"fatherFirstName\": \"Ram\",\r\n      \"fatherLastName\": \"Kapoor\",\r\n      \"fatherMiddleName\": \"A\",\r\n      \"firstName\": \"Prithvi\",\r\n      \"gender\": \"MALE\",\r\n      \"isMobileVerified\": \"yes\",\r\n      \"lastName\": \"Kapoor\",\r\n      \"marriedType\": \"Single\",\r\n      \"middleName\": \"R\",\r\n      \"mobile\": \"9856547\",\r\n      \"motherFirstName\": \"Latha\",\r\n      \"motherLast\": \"kumari\",\r\n      \"numberOfKids\": \"0\",\r\n      \"pastEducationalDetails\": [\r\n        {\r\n          \"board\": \"Delhi University\",\r\n        \"endYear\": \"9-9-1999\",\r\n        \"gradeLevel\": \"PG\",\r\n        \"nameOfCollege\": \"Delhi College\",\r\n        \"percentage\": \"56%\",\r\n        \"semBack\": \"Nil\",\r\n        \"startYear\": \"1-1-1995\"\r\n        }\r\n      ],\r\n     \"preferredLanguages\": [\r\n        \"English\",\"spanish\"\r\n      ],\r\n      \"regionalLanguage\": \"malayalam\",\r\n      \"suffix\": \"xxxx\",\r\n      \"whatsappNumber\": \"552586955\"\r\n    },\r\n    \"userStatus\": \"ACTIVE\",\r\n    \"userType\": \"ADMIN\"\r\n  },\r\n\"userType\":\"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/register",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total-number_admin",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test2",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/security-service/totalCount/ADMIN",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"security-service",
+								"totalCount",
+								"ADMIN"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "student-controller",
+			"item": [
+				{
+					"name": "Get-Student-Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/student-service/studentDetails",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"student-service",
+								"studentDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Student-Details",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test2",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/student-service/deleteStudent/student%40email.com",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"student-service",
+								"deleteStudent",
+								"student%40email.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "teacher-controller",
+			"item": [
+				{
+					"name": "Get-Teacher-Request",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/teacher-service/teacherDetails",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"teacher-service",
+								"teacherDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Teacher-Details",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/teacher-service/deleteTeacher/teacher%40email.com",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"teacher-service",
+								"deleteTeacher",
+								"teacher%40email.com"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "class-service",
+			"item": [
+				{
+					"name": "save-class-details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"type": "text",
+								"value": "test1"
+							},
+							{
+								"key": "SOURCE-ID",
+								"type": "text",
+								"value": "test1"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"className\": \"first\",\r\n  \"desc\": \"second standard\",\r\n  \"incharge\": \"Raj\",\r\n  \"schoolId\": \"23\",\r\n  \"sectionName\": \"B\",\r\n  \"strength\": \"50\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/class-service",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"class-service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch-class_details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/class-service",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"class-service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-class-service",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"className\": \"second\",\r\n  \"desc\": \"2nd std\",\r\n  \"incharge\": \"Raj\",\r\n  \"schoolId\": \"23\",\r\n  \"sectionName\": \"A\",\r\n  \"strength\": \"25\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/class-service/update",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"class-service",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "total-number-classes",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/class-service/fetchNoOfClasses",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"class-service",
+								"fetchNoOfClasses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "section-service",
+			"item": [
+				{
+					"name": "save-section",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"className\": \"FIRST\",\r\n  \"incharge\": \"Raj\",\r\n  \"secFeeCollectionDetail\": [\r\n    {\r\n      \"action\": \"string\",\r\n      \"expectedTotalFee\": \"50000\",\r\n      \"month\": \"JANUARY\",\r\n      \"paidStudents\": \"20\",\r\n      \"remainingFee\": \"25000\",\r\n      \"totalStudents\": \"40\"\r\n    }\r\n  ],\r\n  \"sectionName\": \"D\",\r\n  \"strength\": \"40\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/section-service/FIRST",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"section-service",
+								"FIRST"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-sectiondetails",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/section-service/FIRST",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"section-service",
+								"FIRST"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "discount-service",
+			"item": [
+				{
+					"name": "save-Username-DiscountDetails",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"desc\": \"discount\",\r\n  \"discountPercentage\": 12,\r\n  \"id\": \"\",\r\n  \"regNumber\": \"pav14\",\r\n  \"schoolId\": \"Sch123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/discount-service/saveDiscountDetails",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"discount-service",
+								"saveDiscountDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch-user-discount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test2",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test2",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"regNumber\": \"pav14\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/discount-service/fetchDiscountDetails",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"discount-service",
+								"fetchDiscountDetails"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-discount",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"desc\": \"discount\",\r\n  \"discountPercentage\": 15,\r\n  \"id\": \"60b5dfadded065742abca8d8\",\r\n  \"regNumber\": \"pav14\",\r\n  \"schoolId\": \"Sch123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/discount-service/updateDiscount",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"discount-service",
+								"updateDiscount"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feeStructure-service",
+			"item": [
+				{
+					"name": "save_feeStructure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"auditInfo\": {\r\n    \"createOn\": \"2021-5-5\",\r\n    \"createdBy\": \"pavan\"\r\n  },\r\n  \"className\": \"first\",\r\n    \"comment\": \"fees class\",\r\n  \"effectiveDate\": \"2021-05-19T11:07:03.247Z\",\r\n  \"feesBreakUp\": [\r\n    {\r\n      \"desc\": \"reg fees\",\r\n      \"key\": \"fees\",\r\n      \"value\": 20000\r\n    }\r\n  ],\r\n  \"paymentMethod\": \"QUARTERLY\",\r\n  \"totalBreakUpFee\": 0,\r\n  \"totalFee\": 20000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/feesDetails-service",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"feesDetails-service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-FeeStructure",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"auditInfo\": {\r\n    \"createOn\": \"5-5-2005\",\r\n    \"createdBy\": \"pavan\",\r\n    \"updateOn\": \"5-5-2005\",\r\n    \"updatedBy\": \"string\"\r\n  },\r\n  \"className\": \"first\",\r\n    \"comment\": \"fees class\",\r\n  \"effectiveDate\": \"5-5-2005\",\r\n  \"feeDetailStatus\": \"APPROVED\",\r\n  \"feeId\": \"60bdc4bfc3323337c18de9a3\",\r\n  \"feesBreakUp\": [\r\n    {\r\n      \"desc\": \"reg fees\",\r\n      \"key\": \"fees\",\r\n      \"value\": 20000\r\n    }\r\n  ],\r\n  \"paymentMethod\": \"QUARTERLY\",\r\n  \"totalBreakUpFee\": 0,\r\n  \"totalFee\": 20000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/feesDetails-service",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"feesDetails-service"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch-feeStructure",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"className\": \"first\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/feesDetails-service/getFeesDetails",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"feesDetails-service",
+								"getFeesDetails"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fees-board-service",
+			"item": [
+				{
+					"name": "fetch-class-section-fee",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/report-service/aggregation/feeDetail?query=%7B%24group%20%3A%20%7B_id%20%3A%20null%2C%20totalFee%20%3A%20%7B%24sum%20%3A%20%22%24totalFee%22%7D%7D%7D",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"report-service",
+								"aggregation",
+								"feeDetail"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "%7B%24group%20%3A%20%7B_id%20%3A%20null%2C%20totalFee%20%3A%20%7B%24sum%20%3A%20%22%24totalFee%22%7D%7D%7D"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetch-due-students",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/feesBoard-service/fetchDueStudents/FIRST/A",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"feesBoard-service",
+								"fetchDueStudents",
+								"FIRST",
+								"A"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feeStatus-service",
+			"item": [
+				{
+					"name": "update-feeStatus",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"auditInfo\": {\r\n    \"updateOn\": \"5-5-2021\",\r\n    \"updatedBy\": \"pav\"\r\n  },\r\n  \"className\": \"first\",\r\n  \"comment\": \"Com\",\r\n  \"feeDetailStatus\": \"APPROVED\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/feesStatus-service/updateFeeStatus",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"feesStatus-service",
+								"updateFeeStatus"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "query-controller",
+			"item": [
+				{
+					"name": "count-query",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/report-service/count/student?query=%7B%22userDetail.gender%22%20%3A%22MALE%22%20%7D",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"report-service",
+								"count",
+								"student"
+							],
+							"query": [
+								{
+									"key": "query",
+									"value": "%7B%22userDetail.gender%22%20%3A%22MALE%22%20%7D"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-data",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/report-service/documents/feeStructure",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"report-service",
+								"documents",
+								"feeStructure"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feeStatics-controller",
+			"item": [
+				{
+					"name": "fetch-feeDetail",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/fee-statics/feedetail/first/A",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"fee-statics",
+								"feedetail",
+								"first",
+								"A"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "fetchDueFee",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-CORRELATION-ID",
+								"value": "test1",
+								"type": "text"
+							},
+							{
+								"key": "SOURCE-ID",
+								"value": "test1",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://clasup.blazsoft.com/service/fee-statics/dueFees/first/A/UNPAID",
+							"protocol": "http",
+							"host": [
+								"clasup",
+								"blazsoft",
+								"com"
+							],
+							"path": [
+								"service",
+								"fee-statics",
+								"dueFees",
+								"first",
+								"A",
+								"UNPAID"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
