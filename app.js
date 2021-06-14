@@ -85,14 +85,9 @@ app.use(async (req, res, next) => {
 });*/
 
 app.get('/',async(req,res)=>{
-  db.getConnection((error,connection)=>{
-    if(error){
-      return res.status(400).send(error);
-    }
-    else{
-      return res.send(connection);
-    }
-  })
+  if(db){
+    return res.status(200).send("Connected to database");
+  }
 })
 //create-candidate
 
