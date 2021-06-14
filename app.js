@@ -15,22 +15,14 @@ app.use("/profile", express.static(__dirname + "/profile"));
 
 //database config.
 
-const db = mysql.createConnection({
-  user : process.env.DB_USER,
-  host : process.env.DB_HOST,
-  password : process.env.DB_PASSWORD,
-  database : process.env.DB_NAME,
-  socketPath: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`
-})
-
-/*const createTcpPool = async config => {
+const createTcpPool = async config => {
   // Extract host and port from socket address
   const dbSocketAddr = process.env.DB_HOST.split(':');
 
   // Establish a connection to the database
   return await mysql.createPool({
     user: process.env.DB_USER, // e.g. 'my-db-user'
-    password: process.env.DB_PASSWORD, // e.g. 'my-db-password'
+    password: process.env.DB_PASS, // e.g. 'my-db-password'
     database: process.env.DB_NAME, // e.g. 'my-database'
     host: dbSocketAddr[0], // e.g. '127.0.0.1'
     // ... Specify additional properties here.
@@ -82,9 +74,10 @@ app.use(async (req, res, next) => {
     logger.error(err);
     return next(err);
   }
-});*/
+});
 
 app.get('/',async(req,res)=>{
+  db = db || await createPool();
   if(db){
     return res.status(200).send("Connected to database");
   }
