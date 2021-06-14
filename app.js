@@ -83,6 +83,14 @@ app.use(async (req, res, next) => {
     return next(err);
   }
 });
+
+app.get('/',async(req,res)=>{
+  db = db || await createPool();
+  if(db){
+    return res.status(200).send('Connected to database');
+  }
+  return res.status(400).send("Cann't connect with database");
+})
 //create-candidate
 
 app.post('/create-candidate',async (req,res) => {

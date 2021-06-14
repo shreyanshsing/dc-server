@@ -1,9 +1,1 @@
 runtime: nodejs10
-
-env_variables:
-  PORT : 8080
-  CLOUD_SQL_CONNECTION_NAME : "dream-company-316807:us-central1:dream-company-db"
-  DB_NAME : "records"
-  DB_HOST : "34.136.61.28"
-  DB_USER : "root"
-  DB_PASSWORD : "password"
