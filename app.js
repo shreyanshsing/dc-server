@@ -15,15 +15,15 @@ app.use("/profile", express.static(__dirname + "/profile"));
 
 //database config.
 
-/*const db = mysql.createPool({
-  connectionLimit:10,
+const db = mysql.createConnection({
   user : process.env.DB_USER,
   host : process.env.DB_HOST,
   password : process.env.DB_PASSWORD,
-  database : process.env.DB_NAME
-})*/
+  database : process.env.DB_NAME,
+  socketPath: `/cloudsql/${process.env.CLOUD_SQL_CONNECTION_NAME}`
+})
 
-const createTcpPool = async config => {
+/*const createTcpPool = async config => {
   // Extract host and port from socket address
   const dbSocketAddr = process.env.DB_HOST.split(':');
 
@@ -82,14 +82,17 @@ app.use(async (req, res, next) => {
     logger.error(err);
     return next(err);
   }
-});
+});*/
 
 app.get('/',async(req,res)=>{
-  db = db || await createPool();
-  if(db){
-    return res.status(200).send('Connected to database');
-  }
-  return res.status(400).send("Cann't connect with database");
+  db.getConnection((error,connection)=>{
+    if(error){
+      return res.status(400).send(error);
+    }
+    else{
+      return res.send(connection);
+    }
+  })
 })
 //create-candidate
 
