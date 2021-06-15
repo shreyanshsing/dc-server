@@ -217,7 +217,7 @@ app.post('/post-job',async(req,res) => {
   })
 })
 
-//get-jobs by email
+//get-jobs by id
 
 app.get('/fetch-jobs/:id',async(req,res)=>{
   const email = req.params.id;
@@ -300,16 +300,16 @@ app.post("/apply-for-job",async(req,res)=>{
 app.post('/upload-resume', (req,res)=>{
   const newPath = __dirname + "/resume/";
   const file = req.files.file;
-  const filename = req.body.name;
+  const filename = req.files.file.name;
+  const user = req.body.name;
 
-  file.mv(`${newPath}${filename}`,err => {
+  file.mv(`${newPath}${user}${filename}`,err => {
     if(err){
       console.log(err);
       res.status(400).send("File upload failed");
       return;
     }
-    console.log(filename)
-    res.status(200).send(`${filename}`);
+    res.status(200).send(`${user}${filename}${filename}`);
   })
 })
 
@@ -810,11 +810,13 @@ app.post('/save-job/:job_id',async (req,res)=>{
   var obj = {}
   db = db || await createPool();
 
-  db.query('SELECT candidate_id FROM applied_jobs WHERE job_id = "-b9vc2"',[job_id],
+  db.query('SELECT candidate_id FROM applied_jobs WHERE job_id = ?',[job_id],
   (error,result)=>{
     if(error){
       console.log(error);
+      return;
     }
+    console.log(result);
     if(result.length>0){
       const temp = result.filter(item=>item.candidate_id === candidate_id);
       if(temp.length>0){
@@ -824,6 +826,9 @@ app.post('/save-job/:job_id',async (req,res)=>{
         obj = {...data, 'applied' : false}
       }
     }
+    else{
+      obj = {...data, 'applied' : false}
+    }
   })
 
   db.query('SELECT saved_jobs FROM candidate_record WHERE id = ?',[candidate_id],
@@ -832,6 +837,7 @@ app.post('/save-job/:job_id',async (req,res)=>{
       console.log(error);
       return res.status(400).send(error.sqlMessage);
     }
+    console.log(result)
     if(result[0].saved_jobs && result[0].saved_jobs.length>0){
       arr = result[0].saved_jobs;
       const temp = arr.filter(item=> item.data.id === job_id);
@@ -875,6 +881,21 @@ app.get('/fetch-saved-jobs/:id', async(req,res)=>{
     }
     return res.status(200).send(result[0].saved_jobs);
   })
+})
+
+//get-applied-jobs 
+
+app.get('/fetch-applied-jobs/:id',async(req,res)=>{
+  const candidate_id = req.params.id;
+  db = db || await createPool(); 
+  db.query('SELECT * FROM jobs WHERE id IN (SELECT job_id FROM applied_jobs WHERE candidate_id = ?)',[candidate_id],
+  async(error,result)=>{
+    if(error){
+      console.log(error);
+      return res.status(400).send(error.sqlMessage);
+    }
+    return res.status(200).send(result);
+  }) 
 })
 
 app.listen(process.env.PORT || 8080, ()=>{
